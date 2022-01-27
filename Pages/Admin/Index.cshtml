@@ -1,0 +1,27 @@
+﻿@page
+@model BAIS3110Authentication.Pages.Admin.IndexModel
+@{
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="alert alert-secondary">
+    <div>This information is accessible to Employees only </div>
+    <div>Hello, @User.Identity.Name, the time is @DateTime.Now</div>
+    @if (User.IsInRole("Admin"))
+    {
+        <h1>Admin</h1>
+        <p>Welcome to the Administration page</p>
+
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Admin/Register" role="button">Add New User</a>
+        </p>
+        <button type="button" class="btn btn-danger">Launch Missiles</button>
+    }
+</div>
+}
+else
+{
+    <div class="alert alert-primary">General Public information</div>
+}

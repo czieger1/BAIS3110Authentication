@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Authentication Example</h1>
+    Is User Authenticated: @Model.User.Identity.IsAuthenticated <br />
+    User Name: @Model.User.Identity.Name <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div>Hello, @User.Identity.Name, the time is @DateTime.Now</div>
+    }
+    <br />
+    Claims
+    @foreach (System.Security.Claims.Claim claim in User.Claims)
+    {
+        <p>Claim Type: @claim.Type, Claim Value: @claim.Value <br /></p>
+    }
+</div>
